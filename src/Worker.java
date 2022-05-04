@@ -5,13 +5,19 @@
 
 public class Worker {
     private OnTaskDoneListener callback;
+    private OnTaskErrorListener error;
 
-    public Worker(OnTaskDoneListener callback) {
+    public Worker(OnTaskDoneListener callback, OnTaskErrorListener error) {
         this.callback = callback;
+        this.error = error;
     }
 
     public void start() {
         for (int i = 0; i < 100; i++) {
+            if (i == 32) {
+                error.onError("Task " + i + " is failed");
+            }
+
             callback.onDone("Task " + i + " is done");
         }
     }
