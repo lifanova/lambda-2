@@ -16,9 +16,9 @@ public class Worker {
         for (int i = 0; i < 100; i++) {
             if (i == 32) {
                 error.onError("Task " + i + " is failed");
+            } else {
+                callback.onDone("Task " + i + " is done");
             }
-
-            callback.onDone("Task " + i + " is done");
         }
     }
 }
